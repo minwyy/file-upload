@@ -34,7 +34,7 @@ export default class DashboardComponent extends Component {
 
         .use(Tus, { endpoint: 'https://master.tus.io/files/' })
           
-          uppy.on('complete', result => {
+        uppy.on('complete', result => {
             console.log('successful files:', result.successful)
             console.log('failed files:', result.failed)
         })
