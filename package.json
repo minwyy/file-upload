@@ -2,7 +2,7 @@
   "name": "file-upload",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for file-upload goes here",
+  "description": "file-upload powered by Uppy",
   "repository": "",
   "license": "MIT",
   "author": "",
