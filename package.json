@@ -1,8 +1,8 @@
 {
-  "name": "scheduler-client",
+  "name": "file-upload",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for scheduler-client goes here",
+  "description": "Small description for file-upload goes here",
   "repository": "",
   "license": "MIT",
   "author": "",

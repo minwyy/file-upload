@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'scheduler-client',
+    modulePrefix: 'file-upload',
     environment,
     rootURL: '/',
     locationType: 'auto',
