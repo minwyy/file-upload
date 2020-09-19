@@ -16,8 +16,8 @@ export default class DashboardComponent extends Component {
               minNumberOfFiles: 1,
               allowedFileTypes: ['image/*', 'video/*']
             }
-          })
-          .use(Dashboard, {
+        })
+        .use(Dashboard, {
             trigger: '.UppyModalOpenerBtn',
             inline: true,
             target: '#uppyDashboard',
@@ -30,13 +30,13 @@ export default class DashboardComponent extends Component {
               { id: 'caption', name: 'Caption', placeholder: 'describe what the image is about' }
             ],
             browserBackButtonClose: true
-          })
+        })
 
-          .use(Tus, { endpoint: 'https://master.tus.io/files/' })
+        .use(Tus, { endpoint: 'https://master.tus.io/files/' })
           
           uppy.on('complete', result => {
             console.log('successful files:', result.successful)
             console.log('failed files:', result.failed)
-          })
-        }
+        })
+    }
 }
