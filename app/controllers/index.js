@@ -2,24 +2,7 @@ import Controller from '@ember/controller';
 
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-// import Uppy from '@uppy/core';
-// import Dashboard from '@uppy/dashboard';
 
-
-
-
-// const b = new Uppy({
-//   id: 'b',
-//   debug: true
-// })
-//   .use(Dashboard, {
-//     target: '#b',
-//     inline: true,
-//     width: 400
-//   })
-
-// window.a = a
-// window.b = b
 
 export default class IndexController extends Controller {
 

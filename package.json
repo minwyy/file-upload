@@ -1,8 +1,8 @@
 {
-  "name": "scheduler-client",
+  "name": "file-upload",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for scheduler-client goes here",
+  "description": "file-upload powered by Uppy",
   "repository": "",
   "license": "MIT",
   "author": "",
