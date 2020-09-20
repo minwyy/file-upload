@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 import Uppy from '@uppy/core';
 import Dashboard from '@uppy/dashboard';
 import Tus from '@uppy/tus';
+import GoldenRetriever from '@uppy/golden-retriever';
 
 export default class DashboardComponent extends Component {
     @action
@@ -32,7 +33,12 @@ export default class DashboardComponent extends Component {
             browserBackButtonClose: true
         })
 
-        .use(Tus, { endpoint: 'http://localhost:8080/upload' })
+        .use(Tus, { 
+            endpoint: 'http://localhost:8080/upload',
+            resume: true
+        })
+
+        .use(GoldenRetriever, {serviceWorker: true})
           
         uppy.on('complete', result => {
             console.log('successful files:', result.successful)
