@@ -11,10 +11,10 @@ export default class DashboardComponent extends Component {
             debug: true,
             autoProceed: false,
             restrictions: {
-              maxFileSize: 100000000000,
+              maxFileSize: 10000000000,
               maxNumberOfFiles: 5,
               minNumberOfFiles: 1,
-              allowedFileTypes: ['image/*', 'video/*']
+              allowedFileTypes: ['image/*', 'video/*', '.mkv']
             }
         })
         .use(Dashboard, {
@@ -23,7 +23,7 @@ export default class DashboardComponent extends Component {
             target: '#uppyDashboard',
             replaceTargetContent: true,
             showProgressDetails: true,
-            note: 'Only image and video allowed, up to 100 GB',
+            note: 'Only image and video, up to 10 GB',
             height: 470,
             metaFields: [
               { id: 'name', name: 'Name', placeholder: 'file name' },
@@ -32,7 +32,7 @@ export default class DashboardComponent extends Component {
             browserBackButtonClose: true
         })
 
-        .use(Tus, { endpoint: 'https://master.tus.io/files/' })
+        .use(Tus, { endpoint: 'http://localhost:8080/upload' })
           
         uppy.on('complete', result => {
             console.log('successful files:', result.successful)
