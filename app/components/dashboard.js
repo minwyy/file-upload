@@ -2,10 +2,13 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import Uppy from '@uppy/core';
 import Dashboard from '@uppy/dashboard';
+import OneDrive from '@uppy/onedrive';
+import Webcam from '@uppy/webcam';
 import Tus from '@uppy/tus';
 // import GoldenRetriever from '@uppy/golden-retriever';
 
 export default class DashboardComponent extends Component {
+    // add action for 'did-insert' modifier in hbs templates which is used to bind uppy package to the element after being rendered into the DOM
     @action
     addDashboard(element) {
         const uppy = new Uppy({
@@ -18,6 +21,7 @@ export default class DashboardComponent extends Component {
               allowedFileTypes: ['image/*', 'video/*', '.mkv']
             }
         })
+        // use dashboard plugin
         .use(Dashboard, {
             trigger: '.UppyModalOpenerBtn',
             inline: true,
@@ -32,15 +36,19 @@ export default class DashboardComponent extends Component {
             ],
             browserBackButtonClose: true
         })
-
+        // use Tus plugin for file upload
         .use(Tus, { 
             endpoint: 'http://localhost:8080/upload',
             resume: true,
             chunkSize: 5000000000
         })
-
+        // install GoldenRetriever plugins (Service Worker not enabled as it cannot survive browser crashes)
         // .use(GoldenRetriever, {serviceWorker: false})
-          
+        // use OneDrive plugin
+        .use(OneDrive, { target: Dashboard, companionUrl: 'https://companion.uppy.io' })
+        // use webcam plugin
+        .use(Webcam, { target: Dashboard })
+
         uppy.on('complete', result => {
             console.log('successful files:', result.successful)
             console.log('failed files:', result.failed)
