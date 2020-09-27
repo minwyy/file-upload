@@ -2,10 +2,11 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import Uppy from '@uppy/core';
 import Dashboard from '@uppy/dashboard';
+import GoogleDrive from '@uppy/google-drive';
 import OneDrive from '@uppy/onedrive';
 import Webcam from '@uppy/webcam';
 import Tus from '@uppy/tus';
-// import GoldenRetriever from '@uppy/golden-retriever';
+import GoldenRetriever from '@uppy/golden-retriever';
 
 export default class DashboardComponent extends Component {
     // add action for 'did-insert' modifier in hbs templates which is used to bind uppy package to the element after being rendered into the DOM
@@ -36,18 +37,37 @@ export default class DashboardComponent extends Component {
             ],
             browserBackButtonClose: true
         })
-        // use Tus plugin for file upload
+        // use tus plugin for file upload
         .use(Tus, { 
             endpoint: 'http://localhost:8080/upload',
             resume: true,
             chunkSize: 5000000000
         })
         // install GoldenRetriever plugins (Service Worker not enabled as it cannot survive browser crashes)
-        // .use(GoldenRetriever, {serviceWorker: false})
+        .use(GoldenRetriever, {serviceWorker: false})
+        // use GoogleDrive plugin
+        .use(GoogleDrive, { target: Dashboard, 
+            companionUrl: 'http://localhost:3020' 
+        })
         // use OneDrive plugin
-        .use(OneDrive, { target: Dashboard, companionUrl: 'https://companion.uppy.io' })
+        .use(OneDrive, { 
+            target: Dashboard, 
+            companionUrl: 'http://localhost:3020'
+        })
         // use webcam plugin
         .use(Webcam, { target: Dashboard })
+
+        // serviceWorker for golden retriever
+        // if ('serviceWorker' in navigator) {
+        //     navigator.serviceWorker
+        //       .register('/sw.js') // path to your bundled service worker with GoldenRetriever service worker
+        //       .then((registration) => {
+        //         console.log('ServiceWorker registration successful with scope: ', registration.scope)
+        //       })
+        //       .catch((error) => {
+        //         console.log('Registration failed with ' + error)
+        //       })
+        //   }
 
         uppy.on('complete', result => {
             console.log('successful files:', result.successful)
