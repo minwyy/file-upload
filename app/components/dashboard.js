@@ -6,7 +6,7 @@ import GoogleDrive from '@uppy/google-drive';
 import OneDrive from '@uppy/onedrive';
 import Webcam from '@uppy/webcam';
 import Tus from '@uppy/tus';
-import GoldenRetriever from '@uppy/golden-retriever';
+// import GoldenRetriever from '@uppy/golden-retriever';
 
 export default class DashboardComponent extends Component {
     // add action for 'did-insert' modifier in hbs templates which is used to bind uppy package to the element after being rendered into the DOM
@@ -44,7 +44,7 @@ export default class DashboardComponent extends Component {
             chunkSize: 5000000000
         })
         // install GoldenRetriever plugins (Service Worker not enabled as it cannot survive browser crashes)
-        .use(GoldenRetriever, {serviceWorker: false})
+        // .use(GoldenRetriever, {serviceWorker: false})
         // use GoogleDrive plugin
         .use(GoogleDrive, { target: Dashboard, 
             companionUrl: 'http://localhost:3020' 
